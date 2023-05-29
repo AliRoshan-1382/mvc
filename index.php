@@ -1,6 +1,6 @@
 <?php 
-
 include "bootstrap/init.php";
 
-var_dump($_ENV);
+echo random_elemant([1,2,3,4,5,6,7,8]);
+
 ?>
