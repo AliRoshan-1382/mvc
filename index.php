@@ -1,6 +1,5 @@
-<?php 
-include "bootstrap/init.php";
+<?php
 
-echo random_elemant([1,2,3,4,5,6,7,8]);
+include "bootstrap/init.php";
 
 ?>
