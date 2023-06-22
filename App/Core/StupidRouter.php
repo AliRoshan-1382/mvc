@@ -8,11 +8,11 @@ class StupidRouter{
     private $routers;
     public function __construct()
     {
-        $_ENV['SamoleRoute'];
+        $_ENV['SampleRoute'];
         $this->routers = [
-            '/'.$_ENV['SamoleRoute'].'/hasan/red'=>'colors/red.php',
-            '/'.$_ENV['SamoleRoute'].'/hasan/blue'=>'colors/blue.php',
-            '/'.$_ENV['SamoleRoute'].'/hasan/green'=>'colors/green.php',
+            '/'.$_ENV['SampleRoute'].'/hasan/red'=>'colors/red.php',
+            '/'.$_ENV['SampleRoute'].'/hasan/blue'=>'colors/blue.php',
+            '/'.$_ENV['SampleRoute'].'/hasan/green'=>'colors/green.php',
         ];
     }
 
