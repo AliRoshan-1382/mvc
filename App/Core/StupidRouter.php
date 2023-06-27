@@ -10,9 +10,10 @@ class StupidRouter{
     {
         $_ENV['SampleRoute'];
         $this->routers = [
-            '/'.$_ENV['SampleRoute'].'/hasan/red'=>'colors/red.php',
-            '/'.$_ENV['SampleRoute'].'/hasan/blue'=>'colors/blue.php',
-            '/'.$_ENV['SampleRoute'].'/hasan/green'=>'colors/green.php',
+            $_ENV['SampleRoute'].'/'=>'home/index.php',
+            $_ENV['SampleRoute'].'/hasan/red'=>'colors/red.php',
+            $_ENV['SampleRoute'].'/hasan/blue'=>'colors/blue.php',
+            $_ENV['SampleRoute'].'/hasan/green'=>'colors/green.php',
         ];
     }
 

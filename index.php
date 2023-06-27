@@ -1,14 +1,9 @@
 <?php
 
-use App\core\StupidRouter;
-use App\core\Request;
+use App\core\Routing\Router;
+
 include "bootstrap/init.php";
+$router = new Router();
 
-
-// $request = new Request();
-// $request->redirect('hasan/red');
-
-// $router = new StupidRouter();
-// $router->run();
-
+$router -> run();
 ?>
