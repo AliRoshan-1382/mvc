@@ -1,9 +1,11 @@
 <?php
 
+use App\core\Routing\Route;
 use App\core\Routing\Router;
 
 include "bootstrap/init.php";
-$router = new Router();
 
+$router = new Router();
 $router -> run();
+
 ?>
