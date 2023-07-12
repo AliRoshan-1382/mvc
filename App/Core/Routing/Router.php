@@ -13,17 +13,46 @@ class Router{
     $this->request = new Request();
     $this->routes = Route::routes();
     $this->current_route = $this->findRoute($this->request)  ?? null;
+    $this->run_route_middleware();
+  }
+
+  private function run_route_middleware(){
+    $middleware = $this->current_route['middleware'];
+    foreach ($middleware as $middleware_class) {
+       $middleware_obj = new $middleware_class;
+       $middleware_obj -> handle();
+    }
+    // die();
   }
 
   public function findRoute(Request $request){
     // echo $request->method() . " " . $request->uri();
 
     foreach ($this->routes as $route) {
-        if (in_array($request->method(),$route['methods']) && $request->uri() == $route['uri']) {
+        if (!in_array($request->method(),$route['methods'])) {
+          return False;
+        }
+
+        if ($this->regex_matched($route)) {
           return $route;
         }
     }
     return null;
+  }
+
+  public function regex_matched($route){
+    global $request;
+    $pattern = "/^" . str_replace(['/','{','}'],['\/','(?<','>[-%\w]+)'],$route['uri']) . "$/";
+    $result = preg_match($pattern , $this->request->uri() , $matches);
+    if (!$result) {
+      return false;
+    }
+    foreach ($matches as $key => $value) {
+      if (!is_int($key)) {
+        $request->add_route_param($key,$value);
+      }
+    }
+    return true;
   }
 
   public function dispatch404()
@@ -37,7 +66,7 @@ class Router{
     // if($this->invalidRrquest($this->request)){
     //    $this->dispatch405();
     // }
-    
+
     if (is_null($this-> current_route)) 
       $this->dispatch404();
     $this->dispatch($this-> current_route);
